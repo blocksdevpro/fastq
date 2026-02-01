@@ -19,15 +19,11 @@ def test_task_serialization():
     assert serialized_task["name"] == task.name
     assert serialized_task["status"] == task.status.value
     assert serialized_task["created_at"] == task.created_at.isoformat()
-    assert (
-        serialized_task["started_at"] == (task.started_at.isoformat()
-        if task.started_at
-        else None)
+    assert serialized_task["started_at"] == (
+        task.started_at.isoformat() if task.started_at else None
     )
-    assert (
-        serialized_task["completed_at"] == (task.completed_at.isoformat()
-        if task.completed_at
-        else None)
+    assert serialized_task["completed_at"] == (
+        task.completed_at.isoformat() if task.completed_at else None
     )
     assert serialized_task["result"] == task.result
     assert serialized_task["error"] == task.error

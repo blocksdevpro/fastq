@@ -26,6 +26,8 @@ class Task:
     Attributes:
         id: Unique task identifier
         name: Name of the task function
+        args: Positional arguments for task
+        kwargs: Keyword arguments for task
         status: Current execution status
         created_at: When task was created
         started_at: When task execution began
@@ -37,6 +39,8 @@ class Task:
 
     id: str = field(default_factory=lambda: generate_uuid_str())
     name: str = ""
+    args: tuple = field(default_factory=tuple)
+    kwargs: dict = field(default_factory=dict)
     status: TaskStatus = TaskStatus.PENDING
     created_at: datetime = field(default_factory=lambda: datetime_now())
     started_at: datetime | None = None
@@ -59,6 +63,8 @@ class Task:
         return {
             "id": self.id,
             "name": self.name,
+            "args": self.args,
+            "kwargs": self.kwargs,
             "status": self.status.value,
             "created_at": self.created_at.isoformat(),
             "started_at": self.started_at.isoformat() if self.started_at else None,
@@ -76,6 +82,8 @@ class Task:
         return cls(
             id=data["id"],
             name=data["name"],
+            args=data["args"],
+            kwargs=data["kwargs"],
             status=TaskStatus(data["status"]),
             created_at=datetime.fromisoformat(data["created_at"]),
             started_at=datetime.fromisoformat(data["started_at"])

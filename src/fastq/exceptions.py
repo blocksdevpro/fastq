@@ -6,5 +6,4 @@ class FastQException(Exception):
 
 class FastQTaskNotFoundException(FastQException):
     """Exception for task not found"""
-
     pass
