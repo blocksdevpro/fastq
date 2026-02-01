@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastqueue"
+version = "0.1.0"
+description = "FastQ is a Python library for building distributed task queues."
+authors = [
+    { name = "Uttam Kumar", email = "uttam@uttam.ai" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+
+
+[tools.setuptools]
+package-dir = {""="src"}
+
+
+[tools.setuptools.packages.find]
+where = ["src"]
